@@ -48,6 +48,10 @@ module.exports = {
 			.where('id', id)
 			.first()
 
+		if (!incident) {
+			return response.status(404).json({ error: 'Incident id not found.' })
+		}
+
 		if (incident.ong_id !== ong_id) {
 			return response.status(401).json({ error: 'Operation not permitted.' })
 		}
